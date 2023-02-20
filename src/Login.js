@@ -35,7 +35,7 @@ function Login() {
             <label> Username
                 <input type="text" name="username" placeholder="Username..." onChange={onChange}/>
             </label>
-            <label>
+            <label> Password
                 <input type="password" name="password" placeholder="Password..." onChange={onChange}/>
             </label>
             <button>Submit</button>

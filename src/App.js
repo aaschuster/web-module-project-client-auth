@@ -19,7 +19,8 @@ function App() {
       <Header/>
       <Switch>
           <PrivateRoute exact path="/protected" component={FriendsList}/>
-          <Route path="/login" component={Login}/>      
+          <Route path="/login" component={Login}/>
+          <Route exact path="/" component={Login}/>      
           <Route exact path="/friends" component={FriendsList}/>
           <Route path="/friends/add" component={AddFriend}/>
           <Route path="/logout" component={Logout}/>
