@@ -1,4 +1,6 @@
 import React, {useState} from "react"
+import { Redirect } from "react-router-dom";
+
 import axiosWithAuth from "./axiosWithAuth";
 
 function AddFriend() {
@@ -31,18 +33,20 @@ function AddFriend() {
             console.log(res);
         }).catch(err => console.error(err));
     }
-
-    return (
-        <form onSubmit={onSubmit}>
-            <label> Name
-                <input type="text" name="name" placeholder="Name..." onChange={onChange}/>
-            </label>
-            <label> Email
-                <input type="email" name="email" placeholder="Email..." onChange={onChange}/>
-            </label>
-            <button>Submit</button>
-        </form>
-    )
+    if (localStorage.getItem("token")) {
+        return (
+            <form onSubmit={onSubmit}>
+                <label> Name
+                    <input type="text" name="name" placeholder="Name..." onChange={onChange}/>
+                </label>
+                <label> Email
+                    <input type="email" name="email" placeholder="Email..." onChange={onChange}/>
+                </label>
+                <button>Submit</button>
+            </form>
+        )
+    }
+    return <Redirect to="/login"/>
 }
 
 export default AddFriend;
