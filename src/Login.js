@@ -1,14 +1,26 @@
-import React, {useState} from "react"
+import React, {useState} from "react";
+import axios from "axios";
+import {useHistory} from "react-router-dom"
 
 function Login() {
     const initCredentials = {
-        user: "",
-        pword: ""
+        username: "",
+        password: ""
     }
 
     const [credentials, setCredentials] = useState(initCredentials);
+    const history = useHistory();
 
-    function onSubmit() {
+    function onSubmit(e) {
+        e.preventDefault();
+        axios.post(
+            "http://localhost:9000/api/login", 
+            credentials
+        ).then(res => {
+            localStorage.setItem("token", res.data.token);
+            history.push("/protected");
+        })
+        .catch(err => console.error(err));
     }
 
     function onChange(e) {
@@ -22,10 +34,10 @@ function Login() {
         <form onSubmit={onSubmit}>
             <h2>Login</h2>
             <label> Username
-                <input type="text" name="user" placeholder="Username..." onChange={onChange}/>
+                <input type="text" name="username" placeholder="Username..." onChange={onChange}/>
             </label>
             <label>
-                <input type="password" name="pword" placeholder="Password..." onChange={onChange}/>
+                <input type="password" name="password" placeholder="Password..." onChange={onChange}/>
             </label>
             <button>Submit</button>
         </form>
