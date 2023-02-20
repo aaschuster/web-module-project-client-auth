@@ -19,6 +19,18 @@ function AddFriend() {
 
     function onSubmit (e) {
         e.preventDefault();
+        console.log(form.name);
+        console.log(form.email);
+        axiosWithAuth().post("/friends", 
+            {
+                id: new Date().getTime(),
+                name: form.name,
+                email: form.email
+            }
+        )
+        .then( res => {
+            console.log(res);
+        }).catch(err => console.error(err));
     }
 
     return (

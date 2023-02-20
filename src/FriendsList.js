@@ -11,6 +11,7 @@ function FriendsList () {
         axiosWithAuth().get("/friends")
             .then( res => {
                 setFriends(res.data);
+                console.log(res.data);
             })
             .catch(err => console.error(err));
     }, [])
