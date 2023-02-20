@@ -14,8 +14,7 @@ function Login() {
     function onSubmit(e) {
         e.preventDefault();
         axios.post(
-            "http://localhost:9000/api/login", 
-            credentials
+            "http://localhost:9000/api/login", credentials
         ).then(res => {
             localStorage.setItem("token", res.data.token);
             history.push("/protected");

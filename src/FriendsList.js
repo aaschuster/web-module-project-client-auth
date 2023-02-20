@@ -1,28 +1,30 @@
-import React, {useEffect, useState} from "react";
-import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Redirect } from "react-router-dom";
 import axiosWithAuth from "./axiosWithAuth";
 
 
-function FriendsList () {
+function FriendsList() {
 
     const [friends, setFriends] = useState([]);
 
     useEffect(() => {
         axiosWithAuth().get("/friends")
-            .then( res => {
+            .then(res => {
                 setFriends(res.data);
-                console.log(res.data);
             })
             .catch(err => console.error(err));
     }, [])
+    if (localStorage.getItem("token")) {
+        return (
+            <div>
+                {friends.map(friend => (
+                    <p key={friend.id}> - {friend.name} - {friend.email} </p>
+                ))}
+            </div>
+        )
+    }
+    return <Redirect to="/login"/>
 
-    return (
-        <div>
-            {friends.map( friend => (
-                <p key={friend.id}> - {friend.name} - {friend.email} </p>
-            ))}
-        </div>
-    )
 }
 
 export default FriendsList;
