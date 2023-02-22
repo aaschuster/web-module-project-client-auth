@@ -5,8 +5,9 @@ import axiosWithAuth from "./axiosWithAuth";
 function Logout() {
     const history = useHistory();
     useEffect( () => {
-        axiosWithAuth().post("/logout");
-        localStorage.removeItem("token");
+        axiosWithAuth().post("/logout")
+            .then(res=>localStorage.removeItem("token"))
+            .catch(err=>console.error(err));
         history.push("/");
     }, [])
 
