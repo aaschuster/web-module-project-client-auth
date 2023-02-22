@@ -11,16 +11,13 @@ function FriendsList() {
             .then(res => setFriends(res.data))
             .catch(err => console.error(err));
     }, [])
-    if (localStorage.getItem("token")) {
-        return (
-            <div>
-                {friends.map(friend => (
-                    <p key={friend.id}>{friend.name} - Age: {friend.age} - {friend.email} </p>
-                ))}
-            </div>
-        )
-    }
-    return <Redirect to="/login"/>
+    return (
+        <div>
+            {friends.map(friend => (
+                <p key={friend.id}>{friend.name} - Age: {friend.age} - {friend.email} </p>
+            ))}
+        </div>
+    )
 
 }
 

@@ -34,23 +34,20 @@ function AddFriend() {
         }).catch(err => console.error(err));
         setForm(initForm);
     }
-    if (localStorage.getItem("token")) {
-        return (
-            <form onSubmit={onSubmit}>
-                <label> Name
-                    <input type="text" name="name" placeholder="Name..." onChange={onChange} value={form.name}/>
-                </label>
-                <label> Age
-                    <input type="text" name="age" placeholder="Age..." onChange={onChange} value={form.age}/>
-                </label>
-                <label> Email
-                    <input type="email" name="email" placeholder="Email..." onChange={onChange} value={form.email}/>
-                </label>
-                <button>Submit</button>
-            </form>
-        )
-    }
-    return <Redirect to="/login"/>
+    return (
+        <form onSubmit={onSubmit}>
+            <label> Name
+                <input type="text" name="name" placeholder="Name..." onChange={onChange} value={form.name}/>
+            </label>
+            <label> Age
+                <input type="text" name="age" placeholder="Age..." onChange={onChange} value={form.age}/>
+            </label>
+            <label> Email
+                <input type="email" name="email" placeholder="Email..." onChange={onChange} value={form.email}/>
+            </label>
+            <button>Submit</button>
+        </form>
+    )
 }
 
 export default AddFriend;

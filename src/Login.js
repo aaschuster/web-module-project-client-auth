@@ -17,7 +17,7 @@ function Login() {
             "http://localhost:9000/api/login", credentials
         ).then(res => {
             localStorage.setItem("token", res.data.token);
-            history.push("/protected");
+            history.push("/friends");
         })
         .catch(err => console.error(err));
     }

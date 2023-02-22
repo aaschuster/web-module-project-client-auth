@@ -18,11 +18,10 @@ function App() {
     <div className="App">
       <Header/>
       <Switch>
-          <PrivateRoute exact path="/protected" component={FriendsList}/>
+          <PrivateRoute exact path="/friends" component={FriendsList}/>
+          <PrivateRoute exact path="/friends/add" component={AddFriend}/>
           <Route path="/login" component={Login}/>
           <Route exact path="/" component={Login}/>      
-          <Route exact path="/friends" component={FriendsList}/>
-          <Route path="/friends/add" component={AddFriend}/>
           <Route path="/logout" component={Logout}/>
       </Switch>
     </div>
